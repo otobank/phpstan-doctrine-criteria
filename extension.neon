@@ -1,0 +1,14 @@
+parameters:
+
+services:
+    -
+        class: Otobank\PHPStan\Doctrine\Type\CriteriaMethodReturnTypeExtension
+        tags:
+            - phpstan.broker.dynamicMethodReturnTypeExtension
+    -
+        class: Otobank\PHPStan\Doctrine\Type\CriteriaStaticMethodReturnTypeExtension
+        tags:
+            - phpstan.broker.dynamicStaticMethodReturnTypeExtension
+
+includes:
+    - ../../phpstan/phpstan-doctrine/extension.neon

@@ -1,0 +1,11 @@
+rules:
+    - Otobank\PHPStan\Doctrine\Rules\ProhibitCollectionCallWithAssociationsRule
+    - Otobank\PHPStan\Doctrine\Rules\ProhibitComparisonCallRule
+    - Otobank\PHPStan\Doctrine\Rules\ProhibitComparisonNewRule
+    - Otobank\PHPStan\Doctrine\Rules\ProhibitCriteriaCallRule
+    - Otobank\PHPStan\Doctrine\Rules\ProhibitCriteriaNewRule
+    - Otobank\PHPStan\Doctrine\Rules\ValidateFieldComparisonCallRule
+    - Otobank\PHPStan\Doctrine\Rules\ValidateFieldCriteriaCallRule
+
+includes:
+    - ../../phpstan/phpstan-doctrine/rules.neon

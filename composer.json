@@ -1,0 +1,47 @@
+{
+    "name": "otobank/phpstan-doctrine-criteria",
+    "description": "Doctrine Criteria aextensions for PHPStan",
+    "keywords": ["phpstan", "doctrine"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Toshiyuki Fujita",
+            "email": "tfujita@otobank.co.jp"
+        }
+    ],
+    "require": {
+        "php": "~7.1",
+        "phpstan/phpstan-doctrine": "~0.11.1",
+        "doctrine/collections": "^1.5",
+        "otobank/doctrine-target-aware-criteria": "^0.1.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.14",
+        "phpunit/phpunit": "^7.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Otobank\\PHPStan\\Doctrine\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Otobank\\PHPStan\\Doctrine\\": "tests/"
+        }
+    },
+    "scripts": {
+        "qa": [
+            "@test",
+            "@cs"
+        ],
+        "test" : [
+            "phpunit"
+        ],
+        "cs": [
+            "php-cs-fixer fix -v --dry-run --diff"
+        ],
+        "cs-fix": [
+            "php-cs-fixer fix -v"
+        ]
+    }
+}
