@@ -22,7 +22,6 @@ class ProhibitCollectionCallWithAssociationsRule implements \PHPStan\Rules\Rule
 
     /**
      * @param \PhpParser\Node\Expr\MethodCall $node
-     * @param \PHPStan\Analyser\Scope         $scope
      *
      * @return (string|\PHPStan\Rules\RuleError)[]
      */

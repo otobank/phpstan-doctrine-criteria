@@ -1,6 +1,6 @@
 {
     "name": "otobank/phpstan-doctrine-criteria",
-    "description": "Doctrine Criteria aextensions for PHPStan",
+    "description": "Doctrine Criteria extensions for PHPStan",
     "keywords": ["phpstan", "doctrine"],
     "license": "MIT",
     "authors": [
