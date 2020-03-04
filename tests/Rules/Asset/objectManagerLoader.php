@@ -1,13 +1,12 @@
 <?php
+
 use Doctrine\Common\Persistence\ObjectManager;
 
-return new class implements ObjectManager {
-
+return new class() implements ObjectManager {
     public function getClassMetadata($className)
     {
         if ($className === \Otobank\PHPStan\Doctrine\Rules\Asset\AcmeEntity::class) {
-            return new class implements \Doctrine\Persistence\Mapping\ClassMetadata {
-
+            return new class() implements \Doctrine\Persistence\Mapping\ClassMetadata {
                 public function hasField($fieldName)
                 {
                     return $fieldName === 'foo' || $fieldName === 'bar';

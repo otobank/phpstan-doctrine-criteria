@@ -2,7 +2,6 @@
 
 namespace Otobank\PHPStan\Doctrine\Rules;
 
-
 use Otobank\PHPStan\Doctrine\Type\CriteriaMethodReturnTypeExtension;
 use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
@@ -13,7 +12,7 @@ class ValidateFieldCriteriaCallRuleTest extends RuleTestCase
     /**
      * @throws \PHPStan\ShouldNotHappenException
      */
-    public function getRule(): Rule
+    public function getRule() : Rule
     {
         $objectMetadataResolver = new ObjectMetadataResolver(
             __DIR__ . '/Asset/objectManagerLoader.php',
@@ -24,16 +23,16 @@ class ValidateFieldCriteriaCallRuleTest extends RuleTestCase
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
-    public function getDynamicMethodReturnTypeExtensions(): array
+    public function getDynamicMethodReturnTypeExtensions() : array
     {
         return [
-            new CriteriaMethodReturnTypeExtension()
+            new CriteriaMethodReturnTypeExtension(),
         ];
     }
 
-    public function testProcessNode(): void
+    public function testProcessNode() : void
     {
         $this->analyse(
             [

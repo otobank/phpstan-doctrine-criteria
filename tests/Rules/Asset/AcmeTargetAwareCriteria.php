@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Otobank\PHPStan\Doctrine\Rules\Asset;
 
 use Otobank\Doctrine\Collections\TargetAwareCriteria;

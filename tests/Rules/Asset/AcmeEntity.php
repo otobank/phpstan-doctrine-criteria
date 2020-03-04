@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Otobank\PHPStan\Doctrine\Rules\Asset;
-
 
 class AcmeEntity
 {
