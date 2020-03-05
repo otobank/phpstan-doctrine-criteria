@@ -22,9 +22,7 @@ trait ValidateTrait
         $objectManager = $this->objectMetadataResolver->getObjectManager();
 
         if ($objectManager === null) {
-            throw new \PHPStan\ShouldNotHappenException(
-                'Please provide the "objectManagerLoader" setting.'
-            );
+            throw new \PHPStan\ShouldNotHappenException('Please provide the "objectManagerLoader" setting.');
         }
 
         $this->objectManager = $objectManager;

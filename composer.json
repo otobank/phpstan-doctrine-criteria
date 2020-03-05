@@ -1,6 +1,6 @@
 {
     "name": "otobank/phpstan-doctrine-criteria",
-    "description": "Doctrine Criteria aextensions for PHPStan",
+    "description": "Doctrine Criteria extensions for PHPStan",
     "keywords": ["phpstan", "doctrine"],
     "license": "MIT",
     "authors": [
@@ -11,13 +11,16 @@
     ],
     "require": {
         "php": "~7.1",
-        "phpstan/phpstan-doctrine": "~0.11.1",
+        "phpstan/phpstan": "^0.12.4",
+        "phpstan/phpstan-doctrine": "^0.12.9",
         "doctrine/collections": "^1.5",
-        "otobank/doctrine-target-aware-criteria": "^0.1.0"
+        "otobank/doctrine-target-aware-criteria": "^0.1.0",
+        "nikic/php-parser": "^4.3"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.14",
-        "phpunit/phpunit": "^7.5"
+        "phpunit/phpunit": "^7.5",
+        "doctrine/common": "^2.7"
     },
     "autoload": {
         "psr-4": {
