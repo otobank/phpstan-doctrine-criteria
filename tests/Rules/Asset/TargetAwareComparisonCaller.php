@@ -8,17 +8,20 @@ class TargetAwareComparisonCaller
     {
         $criteria = new AcmeTargetAwareCriteria();
         $criteria->where(AcmeTargetAwareCriteria::expr()->eq('foo', 1));
+        $criteria->where($criteria->expr()->eq('foo', 1));
     }
 
     public function nonAccessFiledShouldNotRaiseError() : void
     {
         $criteria = new AcmeTargetAwareCriteria();
         $criteria->where(AcmeTargetAwareCriteria::expr()->eq('bar', 1));
+        $criteria->where($criteria->expr()->eq('bar', 1));
     }
 
     public function methodCallTargetAwareCriteria() : void
     {
         $criteria = new AcmeTargetAwareCriteria();
         $criteria->where(AcmeTargetAwareCriteria::expr()->eq('baz', 1));
+        $criteria->where($criteria->expr()->eq('baz', 1));
     }
 }

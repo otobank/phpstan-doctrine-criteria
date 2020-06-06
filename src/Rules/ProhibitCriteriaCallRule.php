@@ -27,17 +27,17 @@ class ProhibitCriteriaCallRule implements \PHPStan\Rules\Rule
             return [];
         }
 
-        $type = $scope->getType($node);
+        $calledOnType = $scope->getType($node->var);
 
-        if (! $type instanceof ObjectType) {
+        if (! $calledOnType instanceof ObjectType) {
             return [];
         }
 
-        if (! (new ObjectType(Criteria::class))->isSuperTypeOf($type)->yes()) {
+        if (! (new ObjectType(Criteria::class))->isSuperTypeOf($calledOnType)->yes()) {
             return [];
         }
 
-        if (! (new ObjectType(TargetAwareCriteriaInterface::class))->isSuperTypeOf($type)->yes()) {
+        if (! (new ObjectType(TargetAwareCriteriaInterface::class))->isSuperTypeOf($calledOnType)->yes()) {
             return [
                 sprintf('Use %s instead of %s', TargetAwareCriteriaInterface::class, Criteria::class),
             ];

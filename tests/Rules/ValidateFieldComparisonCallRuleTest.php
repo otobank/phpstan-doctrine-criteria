@@ -14,6 +14,7 @@ class ValidateFieldComparisonCallRuleTest extends RuleTestCase
     public function getRule() : Rule
     {
         $objectMetadataResolver = new ObjectMetadataResolver(
+            $this->createReflectionProvider(),
             __DIR__ . '/Asset/objectManagerLoader.php',
             null
         );
@@ -30,15 +31,27 @@ class ValidateFieldComparisonCallRuleTest extends RuleTestCase
             [
                 [
                     'Otobank\PHPStan\Doctrine\Rules\Asset\AcmeEntity::$bar accessor is missing',
-                    16,
+                    17,
+                ],
+                [
+                    'Otobank\PHPStan\Doctrine\Rules\Asset\AcmeEntity::$bar accessor is missing',
+                    18,
                 ],
                 [
                     'Otobank\PHPStan\Doctrine\Rules\Asset\AcmeEntity::$baz field is missing',
-                    22,
+                    24,
                 ],
                 [
                     'Otobank\PHPStan\Doctrine\Rules\Asset\AcmeEntity::$baz accessor is missing',
-                    22,
+                    24,
+                ],
+                [
+                    'Otobank\PHPStan\Doctrine\Rules\Asset\AcmeEntity::$baz field is missing',
+                    25,
+                ],
+                [
+                    'Otobank\PHPStan\Doctrine\Rules\Asset\AcmeEntity::$baz accessor is missing',
+                    25,
                 ],
             ]
         );
