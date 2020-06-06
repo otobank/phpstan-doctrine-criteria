@@ -14,6 +14,7 @@ class ValidateFieldComparisonCallRuleTest extends RuleTestCase
     public function getRule() : Rule
     {
         $objectMetadataResolver = new ObjectMetadataResolver(
+            $this->createReflectionProvider(),
             __DIR__ . '/Asset/objectManagerLoader.php',
             null
         );
