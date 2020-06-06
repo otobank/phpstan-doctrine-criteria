@@ -8,7 +8,10 @@ use Otobank\Doctrine\Collections\AssociationAwareCriteriaInterface;
 use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
+use PHPStan\TrinaryLogic;
+use PHPStan\Type\IntersectionType;
 use PHPStan\Type\ObjectType;
+use PHPStan\Type\UnionType;
 
 /**
  * Prohibit `Collection::matching(AssociationAwareCriteriaInterface $criteria)`
@@ -31,14 +34,29 @@ class ProhibitCollectionCallWithAssociationsRule implements \PHPStan\Rules\Rule
             return [];
         }
 
-        $type = $scope->getType($node);
+        $calledOnType = $scope->getType($node->var);
 
-        if (! $type instanceof ObjectType) {
+        $collectionType = new ObjectType(Collection::class);
+        $selectableType = new ObjectType(Selectable::class);
+
+        if ($calledOnType instanceof ObjectType) {
+            $isCollectionType = $collectionType->isSuperTypeOf($calledOnType);
+            $isSelectableType = $selectableType->isSuperTypeOf($calledOnType);
+        } elseif (
+            $calledOnType instanceof IntersectionType
+            || $calledOnType instanceof UnionType
+        ) {
+            $results1 = [];
+            $results2 = [];
+            foreach ($calledOnType->getTypes() as $childType) {
+                $results1[] = $collectionType->isSuperTypeOf($childType);
+                $results2[] = $selectableType->isSuperTypeOf($childType);
+            }
+            $isCollectionType = TrinaryLogic::createNo()->or(...$results1);
+            $isSelectableType = TrinaryLogic::createNo()->or(...$results2);
+        } else {
             return [];
         }
-
-        $isCollectionType = (new ObjectType(Collection::class))->isSuperTypeOf($type);
-        $isSelectableType = (new ObjectType(Selectable::class))->isSuperTypeOf($type);
 
         $methodName = $node->name->name;
 
