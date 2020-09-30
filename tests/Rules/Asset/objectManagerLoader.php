@@ -7,9 +7,23 @@ return new class() implements ObjectManager {
     {
         if ($className === \Otobank\PHPStan\Doctrine\Rules\Asset\AcmeEntity::class) {
             return new class() implements \Doctrine\Persistence\Mapping\ClassMetadata {
+                public $fieldMappings = [
+                    'foo' => [],
+                    'bar' => [],
+                    'embedded.baz' => [],
+                ];
+                public $embeddedClasses = [
+                    'embedded' => [
+                        'class' => \Otobank\PHPStan\Doctrine\Rules\Asset\EmbeddedEntity::class,
+                        'columnPrefix' => false,
+                        'declaredField' => null,
+                        'originalField' => null,
+                    ],
+                ];
+
                 public function hasField($fieldName)
                 {
-                    return $fieldName === 'foo' || $fieldName === 'bar';
+                    return isset($this->fieldMappings[$fieldName]) || isset($this->embeddedClasses[$fieldName]);
                 }
 
                 public function getAssociationTargetClass($assocName)

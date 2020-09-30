@@ -46,26 +46,35 @@ trait ValidateTrait
         foreach ($fields as $field) {
             $dqlOk = false;
             $phpOK = false;
-            $isAssoc = false;
+            $usingAssoc = false;
+            $usingEmbedded = false;
 
-            // 関連オブジェクトを条件に使っている
             if (strpos($field, '.') !== false) {
                 list($alias, $assocField) = explode('.', $field);
 
                 if (array_key_exists($alias, $assocMap)) {
-                    $isAssoc = true;
+                    // Using association object
+                    $usingAssoc = true;
                     $assocName = $assocMap[$alias];
                     $meta = $this->objectManager->getClassMetadata($targetClass);
                     $targetClass = $meta->getAssociationTargetClass($assocName);
                     $field = $assocField;
+                } else {
+                    $meta = $this->objectManager->getClassMetadata($targetClass);
+
+                    if (array_key_exists($alias, $meta->embeddedClasses)) {
+                        // Using embedded
+                        $usingEmbedded = true;
+                    }
                 }
             }
 
             $dqlOk = $this->isAccessibleForDql($targetClass, $field);
 
-            if ($isAssoc) {
-                // 関連オブジェクトを条件に使っている場合は QueryBuilder にしか適用できない
-                // よって、アクセサのチェックは不要
+            if ($usingAssoc || $usingEmbedded) {
+                // If you are using association objects or Embedded,
+                // it can only apply to QueryBuilder.
+                // Therefore, no accessor checks are required.
                 $phpOK = true;
             } else {
                 $phpOK = $this->isAccessibleForPhp($targetClass, $field);
@@ -92,7 +101,7 @@ trait ValidateTrait
 
     private function isAccessibleForPhp(string $targetClass, string $field) : bool
     {
-        // See: Doctrine\Common\Collections\Expr::getObjectFieldValue
+        // See: Doctrine\Common\Collections\Expr\ClosureExpressionVisitor::getObjectFieldValue
         foreach (['get', 'is'] as $prefix) {
             $accessor = $prefix . $field;
 
