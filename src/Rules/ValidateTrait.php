@@ -110,6 +110,10 @@ trait ValidateTrait
             }
         }
 
+        if (preg_match('/^is[A-Z]+/', $field) === 1 && method_exists($targetClass, $field)) {
+            return true;
+        }
+
         return false;
     }
 }
