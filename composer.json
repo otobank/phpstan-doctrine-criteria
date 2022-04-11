@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": "~7.1",
+        "php": "^7.2",
         "phpstan/phpstan": "^0.12.4",
         "phpstan/phpstan-doctrine": "^0.12.12",
         "doctrine/collections": "^1.5",
@@ -19,7 +19,7 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.14",
-        "phpunit/phpunit": "^7.5",
+        "phpunit/phpunit": "^8",
         "doctrine/common": "^2.7"
     },
     "autoload": {
