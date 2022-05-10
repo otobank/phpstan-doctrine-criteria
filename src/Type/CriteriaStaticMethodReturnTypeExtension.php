@@ -31,6 +31,7 @@ class CriteriaStaticMethodReturnTypeExtension implements DynamicStaticMethodRetu
         Scope $scope
     ) : Type {
         assert($methodCall->class instanceof \PhpParser\Node\Name);
+
         return new ObjectType($scope->resolveName($methodCall->class));
     }
 }

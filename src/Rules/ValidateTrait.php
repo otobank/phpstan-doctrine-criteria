@@ -31,6 +31,7 @@ trait ValidateTrait
     /**
      * @param class-string $criteriaClassName
      * @param list<string> $fields
+     *
      * @return list<string>
      */
     private function validateFields(string $criteriaClassName, array $fields) : array
