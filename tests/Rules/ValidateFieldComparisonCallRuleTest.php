@@ -6,6 +6,9 @@ use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
 use PHPStan\Type\Doctrine\ObjectMetadataResolver;
 
+/**
+ * @extends RuleTestCase<ValidateFieldComparisonCallRuleTest>
+ */
 class ValidateFieldComparisonCallRuleTest extends RuleTestCase
 {
     /**
@@ -14,7 +17,7 @@ class ValidateFieldComparisonCallRuleTest extends RuleTestCase
     public function getRule() : Rule
     {
         $objectMetadataResolver = new ObjectMetadataResolver(
-            __DIR__ . '/Asset/objectManagerLoader.php'
+            __DIR__ . '/Asset/entity-manager.php'
         );
 
         return new ValidateFieldComparisonCallRule($objectMetadataResolver);

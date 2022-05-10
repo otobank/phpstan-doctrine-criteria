@@ -5,6 +5,9 @@ namespace Otobank\PHPStan\Doctrine\Rules;
 use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
 
+/**
+ * @extends RuleTestCase<ProhibitCollectionCallWithAssociationsRuleTest>
+ */
 class ProhibitCollectionCallWithAssociationsRuleTest extends RuleTestCase
 {
     public function getRule() : Rule

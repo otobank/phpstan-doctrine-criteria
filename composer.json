@@ -20,7 +20,11 @@
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.14",
         "phpunit/phpunit": "^8",
-        "doctrine/common": "^2.7"
+        "doctrine/common": "^2.7",
+        "phpstan/phpstan-phpunit": "^1.1",
+        "doctrine/dbal": "^2.7.1",
+        "doctrine/orm": "^2.6",
+        "symfony/cache": "^5.4"
     },
     "autoload": {
         "psr-4": {

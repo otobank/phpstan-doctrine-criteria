@@ -35,7 +35,7 @@ class ValidateFieldCriteriaCallRule implements \PHPStan\Rules\Rule
      */
     public function processNode(Node $node, Scope $scope) : array
     {
-        $type = $scope->getType($node);
+        $type = $scope->getType($node->var);
 
         if (! $type instanceof ObjectType) {
             return [];
@@ -59,11 +59,13 @@ class ValidateFieldCriteriaCallRule implements \PHPStan\Rules\Rule
             return [];
         }
 
-        if (! isset($node->args[0])) {
+        $args = $node->getArgs();
+
+        if (! isset($args[0])) {
             return [];
         }
 
-        $argType = $scope->getType($node->args[0]->value);
+        $argType = $scope->getType($args[0]->value);
 
         if (! $argType instanceof ConstantArrayType) {
             return [];

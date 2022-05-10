@@ -1,4 +1,7 @@
-<?php
+<?php declare(strict_types = 1);
 
-/** @var $loader \Composer\Autoload\ClassLoader */
-$loader = require dirname(__DIR__).'/vendor/autoload.php';
+use PHPStan\Testing\PHPStanTestCase;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+PHPStanTestCase::getContainer();
