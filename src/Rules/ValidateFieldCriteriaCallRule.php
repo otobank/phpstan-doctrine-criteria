@@ -18,6 +18,8 @@ use PHPStan\Type\ObjectType;
  *       'fieldA' => ...
  *   ]);
  * ```
+ *
+ * @template-implements \PHPStan\Rules\Rule<MethodCall>
  */
 class ValidateFieldCriteriaCallRule implements \PHPStan\Rules\Rule
 {
@@ -85,6 +87,7 @@ class ValidateFieldCriteriaCallRule implements \PHPStan\Rules\Rule
         }
 
         $criteriaClassName = $type->getClassName();
+        assert(class_exists($criteriaClassName));
 
         return $this->validateFields($criteriaClassName, $fields);
     }

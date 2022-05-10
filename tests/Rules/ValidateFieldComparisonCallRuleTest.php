@@ -7,7 +7,7 @@ use PHPStan\Testing\RuleTestCase;
 use PHPStan\Type\Doctrine\ObjectMetadataResolver;
 
 /**
- * @extends RuleTestCase<ValidateFieldComparisonCallRuleTest>
+ * @extends RuleTestCase<ValidateFieldComparisonCallRule>
  */
 class ValidateFieldComparisonCallRuleTest extends RuleTestCase
 {

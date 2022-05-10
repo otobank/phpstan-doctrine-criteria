@@ -11,6 +11,8 @@ use PHPStan\Type\ObjectType;
 
 /**
  * Prohibit `new Criteria();`
+ *
+ * @template-implements \PHPStan\Rules\Rule<New_>
  */
 class ProhibitCriteriaNewRule implements \PHPStan\Rules\Rule
 {
@@ -20,7 +22,7 @@ class ProhibitCriteriaNewRule implements \PHPStan\Rules\Rule
     }
 
     /**
-     * @param \PhpParser\Node\Expr\MethodCall $node
+     * @param \PhpParser\Node\Expr\New_ $node
      *
      * @return (string|\PHPStan\Rules\RuleError)[]
      */

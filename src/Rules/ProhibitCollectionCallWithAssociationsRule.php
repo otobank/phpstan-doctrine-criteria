@@ -15,6 +15,8 @@ use PHPStan\Type\UnionType;
 
 /**
  * Prohibit `Collection::matching(AssociationAwareCriteriaInterface $criteria)`
+ *
+ * @template-implements \PHPStan\Rules\Rule<MethodCall>
  */
 class ProhibitCollectionCallWithAssociationsRule implements \PHPStan\Rules\Rule
 {

@@ -6,7 +6,7 @@ use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
 
 /**
- * @extends RuleTestCase<ProhibitCollectionCallWithAssociationsRuleTest>
+ * @extends RuleTestCase<ProhibitCollectionCallWithAssociationsRule>
  */
 class ProhibitCollectionCallWithAssociationsRuleTest extends RuleTestCase
 {

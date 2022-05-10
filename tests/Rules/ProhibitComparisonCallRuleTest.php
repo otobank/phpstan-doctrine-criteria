@@ -6,7 +6,7 @@ use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
 
 /**
- * @extends RuleTestCase<ProhibitComparisonCallRuleTest>
+ * @extends RuleTestCase<ProhibitComparisonCallRule>
  */
 class ProhibitComparisonCallRuleTest extends RuleTestCase
 {

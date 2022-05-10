@@ -11,6 +11,8 @@ use PHPStan\Type\ObjectType;
 
 /**
  * Prohibit `new Comparison();`
+ *
+ * @template-implements \PHPStan\Rules\Rule<New_>
  */
 class ProhibitComparisonNewRule implements \PHPStan\Rules\Rule
 {
@@ -20,7 +22,7 @@ class ProhibitComparisonNewRule implements \PHPStan\Rules\Rule
     }
 
     /**
-     * @param \PhpParser\Node\Expr\MethodCall $node
+     * @param \PhpParser\Node\Expr\New_ $node
      *
      * @return (string|\PHPStan\Rules\RuleError)[]
      */

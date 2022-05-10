@@ -7,6 +7,9 @@ use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
 use PHPStan\Type\Doctrine\ObjectMetadataResolver;
 
+/**
+ * @extends RuleTestCase<ValidateFieldCriteriaCallRule>
+ */
 class ValidateFieldCriteriaCallRuleTest extends RuleTestCase
 {
     /**
@@ -22,7 +25,7 @@ class ValidateFieldCriteriaCallRuleTest extends RuleTestCase
     }
 
     /**
-     * {@inheritdoc}
+     * @return list<CriteriaMethodReturnTypeExtension>
      */
     public function getDynamicMethodReturnTypeExtensions() : array
     {
