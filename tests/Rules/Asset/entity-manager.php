@@ -31,7 +31,8 @@ Type::overrideType(
     DateTimeImmutableType::class
 );
 
-return EntityManager::create(
+// @  suppress ORM 's PHP deprecated calls -- "continue" targeting switch is equivalent to "break". Did you mean to use "continue 2"?
+return @EntityManager::create(
     [
         'driver' => 'pdo_sqlite',
         'memory' => true,
