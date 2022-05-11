@@ -3,8 +3,6 @@
 declare(strict_types=1);
 
 use Doctrine\Common\Annotations\AnnotationReader;
-use Doctrine\DBAL\Types\DateTimeImmutableType;
-use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
@@ -26,12 +24,7 @@ $metadataDriver->addDriver(new AnnotationDriver(
 
 $config->setMetadataDriverImpl($metadataDriver);
 
-Type::overrideType(
-    'date',
-    DateTimeImmutableType::class
-);
-
-// @  suppress ORM 's PHP deprecated calls -- "continue" targeting switch is equivalent to "break". Did you mean to use "continue 2"?
+// @ suppress ORM 's PHP deprecated calls -- "continue" targeting switch is equivalent to "break". Did you mean to use "continue 2"?
 return @EntityManager::create(
     [
         'driver' => 'pdo_sqlite',
