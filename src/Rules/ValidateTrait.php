@@ -60,11 +60,11 @@ trait ValidateTrait
                     // Using association object
                     $usingAssoc = true;
                     $assocName = $assocMap[$alias];
-                    $meta = $this->objectMetadataResolver->getClassMetadata($targetClass);
+                    $meta = $this->objectManager->getClassMetadata($targetClass);
                     $targetClass = $meta->getAssociationTargetClass($assocName);
                     $field = $assocField;
                 } else {
-                    $meta = $this->objectMetadataResolver->getClassMetadata($targetClass);
+                    $meta = $this->objectManager->getClassMetadata($targetClass);
 
                     if (array_key_exists($alias, $meta->embeddedClasses)) {
                         // Using embedded
