@@ -5,6 +5,9 @@ namespace Otobank\PHPStan\Doctrine\Rules;
 use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
 
+/**
+ * @extends RuleTestCase<ProhibitCriteriaNewRule>
+ */
 class ProhibitCriteriaNewRuleTest extends RuleTestCase
 {
     public function getRule() : Rule

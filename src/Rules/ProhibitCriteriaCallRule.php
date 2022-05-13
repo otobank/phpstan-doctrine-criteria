@@ -9,6 +9,9 @@ use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Type\ObjectType;
 
+/**
+ * @template-implements \PHPStan\Rules\Rule<MethodCall>
+ */
 class ProhibitCriteriaCallRule implements \PHPStan\Rules\Rule
 {
     public function getNodeType() : string

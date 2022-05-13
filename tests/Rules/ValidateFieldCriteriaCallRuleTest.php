@@ -7,6 +7,9 @@ use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
 use PHPStan\Type\Doctrine\ObjectMetadataResolver;
 
+/**
+ * @extends RuleTestCase<ValidateFieldCriteriaCallRule>
+ */
 class ValidateFieldCriteriaCallRuleTest extends RuleTestCase
 {
     /**
@@ -15,16 +18,14 @@ class ValidateFieldCriteriaCallRuleTest extends RuleTestCase
     public function getRule() : Rule
     {
         $objectMetadataResolver = new ObjectMetadataResolver(
-            $this->createReflectionProvider(),
-            __DIR__ . '/Asset/objectManagerLoader.php',
-            null
+            __DIR__ . '/Asset/entity-manager.php'
         );
 
         return new ValidateFieldCriteriaCallRule($objectMetadataResolver);
     }
 
     /**
-     * {@inheritdoc}
+     * @return list<CriteriaMethodReturnTypeExtension>
      */
     public function getDynamicMethodReturnTypeExtensions() : array
     {

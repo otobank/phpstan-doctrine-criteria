@@ -28,6 +28,12 @@ trait ValidateTrait
         $this->objectManager = $objectManager;
     }
 
+    /**
+     * @param class-string $criteriaClassName
+     * @param list<string> $fields
+     *
+     * @return list<string>
+     */
     private function validateFields(string $criteriaClassName, array $fields) : array
     {
         if (! is_a($criteriaClassName, TargetAwareCriteriaInterface::class, true)) {
@@ -36,7 +42,7 @@ trait ValidateTrait
 
         $targetClass = $criteriaClassName::getTargetClass();
 
-        $assocAliases = [];
+        $assocMap = [];
         if (is_a($criteriaClassName, AssociationAwareCriteriaInterface::class, true)) {
             $assocMap = $criteriaClassName::getAssociationMap();
         }
@@ -44,8 +50,6 @@ trait ValidateTrait
         $messages = [];
 
         foreach ($fields as $field) {
-            $dqlOk = false;
-            $phpOK = false;
             $usingAssoc = false;
             $usingEmbedded = false;
 

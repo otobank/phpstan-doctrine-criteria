@@ -8,11 +8,14 @@ use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Type\Constant\ConstantStringType;
 use PHPStan\Type\ObjectType;
+use PHPStan\Type\TypeWithClassName;
 
 /**
  * ```
  *   TargetAwareCriteria::expr()->eq($field, $value); // Validate $field
  * ```
+ *
+ * @template-implements \PHPStan\Rules\Rule<MethodCall>
  */
 class ValidateFieldComparisonCallRule implements \PHPStan\Rules\Rule
 {
@@ -45,11 +48,13 @@ class ValidateFieldComparisonCallRule implements \PHPStan\Rules\Rule
             return [];
         }
 
-        if (! isset($node->args[0])) {
+        $args = $node->getArgs();
+
+        if (! isset($args[0])) {
             return [];
         }
 
-        $argType = $scope->getType($node->args[0]->value);
+        $argType = $scope->getType($args[0]->value);
 
         if (! $argType instanceof ConstantStringType) {
             return [];
@@ -60,10 +65,14 @@ class ValidateFieldComparisonCallRule implements \PHPStan\Rules\Rule
         if (isset($node->var->class)) {
             $criteriaClassName = $scope->resolveName($node->var->class);
         } elseif (isset($node->var->var)) {
-            $criteriaClassName = $scope->getType($node->var->var)->getClassName();
+            $varType = $scope->getType($node->var->var);
+            assert($varType instanceof TypeWithClassName);
+            $criteriaClassName = $varType->getClassName();
         } else {
-            $criteriaClassName = '';
+            return [];
         }
+
+        assert(class_exists($criteriaClassName));
 
         return $this->validateFields($criteriaClassName, [$field]);
     }

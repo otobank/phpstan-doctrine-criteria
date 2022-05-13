@@ -1,4 +1,8 @@
-<phpunit bootstrap="./tests/bootstrap.php">
+<phpunit
+ xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ bootstrap="tests/bootstrap.php"
+>
     <testsuites>
         <testsuite name="main">
             <directory suffix="Test.php">./tests</directory>

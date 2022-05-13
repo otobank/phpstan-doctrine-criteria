@@ -15,6 +15,8 @@ use PHPStan\Type\UnionType;
 
 /**
  * Prohibit `Collection::matching(AssociationAwareCriteriaInterface $criteria)`
+ *
+ * @template-implements \PHPStan\Rules\Rule<MethodCall>
  */
 class ProhibitCollectionCallWithAssociationsRule implements \PHPStan\Rules\Rule
 {
@@ -63,7 +65,7 @@ class ProhibitCollectionCallWithAssociationsRule implements \PHPStan\Rules\Rule
         if (($isCollectionType->yes() || $isSelectableType->yes())
             && $methodName === 'matching'
         ) {
-            $criteriaType = $scope->getType($node->args[0]->value);
+            $criteriaType = $scope->getType($node->getArgs()[0]->value);
             $isQueryBuilderType = (new ObjectType(AssociationAwareCriteriaInterface::class))->isSuperTypeOf($criteriaType);
 
             if ($isQueryBuilderType->yes()) {
