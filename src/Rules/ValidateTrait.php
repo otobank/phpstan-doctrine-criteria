@@ -2,7 +2,8 @@
 
 namespace Otobank\PHPStan\Doctrine\Rules;
 
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManager;
+use Doctrine\Persistence\ObjectManager;
 use Otobank\Doctrine\Collections\AssociationAwareCriteriaInterface;
 use Otobank\Doctrine\Collections\TargetAwareCriteriaInterface;
 use PHPStan\Type\Doctrine\ObjectMetadataResolver;
@@ -12,7 +13,7 @@ trait ValidateTrait
     /** @var ObjectMetadataResolver */
     private $objectMetadataResolver;
 
-    /** @var ObjectManager */
+    /** @var EntityManager */
     private $objectManager;
 
     public function __construct(ObjectMetadataResolver $objectMetadataResolver)
@@ -23,6 +24,9 @@ trait ValidateTrait
 
         if ($objectManager === null) {
             throw new \PHPStan\ShouldNotHappenException('Please provide the "objectManagerLoader" setting.');
+        }
+        if (! $objectManager instanceof EntityManager) {
+            throw new \PHPStan\ShouldNotHappenException('ObjectManager should be EntityManager');
         }
 
         $this->objectManager = $objectManager;
@@ -61,11 +65,13 @@ trait ValidateTrait
                     $usingAssoc = true;
                     $assocName = $assocMap[$alias];
                     $meta = $this->objectManager->getClassMetadata($targetClass);
-                    $targetClass = $meta->getAssociationTargetClass($assocName);
+                    $assocationTargetClass = $meta->getAssociationTargetClass($assocName);
+                    if ($assocationTargetClass) {
+                        $targetClass = $assocationTargetClass;
+                    }
                     $field = $assocField;
                 } else {
                     $meta = $this->objectManager->getClassMetadata($targetClass);
-
                     if (array_key_exists($alias, $meta->embeddedClasses)) {
                         // Using embedded
                         $usingEmbedded = true;
