@@ -1,16 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Access to an undefined property Doctrine\\\\Persistence\\\\Mapping\\\\ClassMetadata\\:\\:\\$embeddedClasses\\.$#"
-			count: 1
-			path: src/Rules/ValidateFieldComparisonCallRule.php
-
-		-
-			message: "#^Access to an undefined property Doctrine\\\\Persistence\\\\Mapping\\\\ClassMetadata\\:\\:\\$embeddedClasses\\.$#"
-			count: 1
-			path: src/Rules/ValidateFieldCriteriaCallRule.php
-
-		-
 			message: "#^Creating new PHPStan\\\\Type\\\\Doctrine\\\\ObjectMetadataResolver is not covered by backward compatibility promise\\. The class might change in a minor PHPStan version\\.$#"
 			count: 1
 			path: tests/Rules/ValidateFieldComparisonCallRuleTest.php
