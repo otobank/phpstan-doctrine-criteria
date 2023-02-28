@@ -65,9 +65,10 @@ trait ValidateTrait
                     $assocName = $assocMap[$alias];
                     $meta = $this->objectManager->getClassMetadata($targetClass);
                     $assocationTargetClass = $meta->getAssociationTargetClass($assocName);
-                    if ($assocationTargetClass) {
-                        $targetClass = $assocationTargetClass;
+                    if (! $assocationTargetClass) {
+                        throw new \PHPStan\ShouldNotHappenException('association target class not found');
                     }
+                    $targetClass = $assocationTargetClass;
                     $field = $assocField;
                 } else {
                     $meta = $this->objectManager->getClassMetadata($targetClass);
