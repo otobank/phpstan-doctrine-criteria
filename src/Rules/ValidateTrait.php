@@ -3,7 +3,6 @@
 namespace Otobank\PHPStan\Doctrine\Rules;
 
 use Doctrine\ORM\EntityManager;
-use Doctrine\Persistence\ObjectManager;
 use Otobank\Doctrine\Collections\AssociationAwareCriteriaInterface;
 use Otobank\Doctrine\Collections\TargetAwareCriteriaInterface;
 use PHPStan\Type\Doctrine\ObjectMetadataResolver;
