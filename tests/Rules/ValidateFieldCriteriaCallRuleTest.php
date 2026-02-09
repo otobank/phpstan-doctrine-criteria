@@ -18,7 +18,7 @@ class ValidateFieldCriteriaCallRuleTest extends RuleTestCase
     public function getRule() : Rule
     {
         $objectMetadataResolver = new ObjectMetadataResolver(
-            __DIR__ . '/Asset/entity-manager.php'
+            __DIR__ . '/Asset/entity-manager.php', __DIR__ . '/../../tmp'
         );
 
         return new ValidateFieldCriteriaCallRule($objectMetadataResolver);

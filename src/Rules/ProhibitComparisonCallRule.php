@@ -24,7 +24,7 @@ class ProhibitComparisonCallRule implements \PHPStan\Rules\Rule
     }
 
     /**
-     * @param \PhpParser\Node\Expr\MethodCall $node
+     * @param MethodCall $node
      *
      * @return (string|\PHPStan\Rules\RuleError)[]
      */
