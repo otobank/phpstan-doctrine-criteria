@@ -22,7 +22,7 @@ class ProhibitCriteriaNewRule implements \PHPStan\Rules\Rule
     }
 
     /**
-     * @param \PhpParser\Node\Expr\New_ $node
+     * @param New_ $node
      *
      * @return (string|\PHPStan\Rules\RuleError)[]
      */
